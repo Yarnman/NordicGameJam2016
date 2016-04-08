@@ -24,6 +24,10 @@ public class CameraShake : MonoBehaviour {
 	
 	void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Shake(Reason.PlayerDead);
+        }
         //Since the camera shake is not explicitly based on Time.deltaTime, return when the timescale is zero.
         if (Time.timeScale == 0.0f)
         {
@@ -36,7 +40,7 @@ public class CameraShake : MonoBehaviour {
             //An animationcurve allows for a smooth degradation of intensity.
             float t_Intensity = m_IntensityCurve.Evaluate(t_RelativeTime) * m_Distance;
             //The camera is parented to an object and moves in a random circle around by changing its localPosition.
-            transform.localPosition = Random.insideUnitCircle * t_Intensity;
+            transform.localPosition = Random.insideUnitSphere * t_Intensity;
 
             if (t_RelativeTime >= 1.0f)
             {

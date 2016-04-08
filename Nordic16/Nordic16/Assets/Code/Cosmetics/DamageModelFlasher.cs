@@ -4,7 +4,7 @@ using System.Collections;
 //Class to light up an object with a bright white. Is triggered by different scripts when the object gets hit. This indicates damage.
 public class DamageModelFlasher : MonoBehaviour {
 
-    [SerializeField] Renderer[] m_Renderers = null;
+    [SerializeField] Renderer m_Renderer = null;
     [SerializeField] AnimationCurve m_FlashCurve = null;
     [SerializeField] Color m_BaseColor = Color.clear;
     [SerializeField] float m_MaxTime = 0;
@@ -30,12 +30,10 @@ public class DamageModelFlasher : MonoBehaviour {
                 float t_Value = m_FlashCurve.Evaluate(t_CurrentTime);
                 Color t_Color = m_BaseColor;
                 t_Color.a = t_Value;
-                for (int i = 0; i < m_Renderers.Length; i ++)
-                {
-                    if (m_Renderers[i].materials.Length >= 2)
-                    { 
-                        m_Renderers[i].materials[1].color = t_Color;
-                    }
+
+                if (m_Renderer.materials.Length >= 2)
+                { 
+                    m_Renderer.materials[1].color = t_Color;
                 }
             }
         }
@@ -45,12 +43,10 @@ public class DamageModelFlasher : MonoBehaviour {
     {
         Color t_Color = m_BaseColor;
         t_Color.a = 0;
-        for (int i = 0; i < m_Renderers.Length; i++)
-        {
-            if (m_Renderers[i].materials.Length >= 2)
-            { 
-                m_Renderers[i].materials[1].color = t_Color;
-            }
+
+        if (m_Renderer.materials.Length >= 2)
+        { 
+            m_Renderer.materials[1].color = t_Color;
         }
     }
 
