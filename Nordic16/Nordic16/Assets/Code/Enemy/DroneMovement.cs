@@ -32,7 +32,7 @@ public class DroneMovement : MonoBehaviour {
         }
         if (Vector3.Dot(t_Velocity, t_Dir) <= m_MaxVelocity)
         {
-            t_Velocity += t_Dir * m_Acceleration * Time.deltaTime;
+            t_Velocity += t_Dir * t_Force * Time.deltaTime;
         }
 
         if (t_Velocity.magnitude >= m_MaxVelocity)
@@ -40,7 +40,7 @@ public class DroneMovement : MonoBehaviour {
             t_Velocity += t_Velocity.normalized * -m_DragForce * Time.deltaTime;
         }
         m_Rigidbody.velocity = t_Velocity;
-
-        transform.LookAt(m_Player.transform);
+        Debug.Log(t_Dir);
+        
 	}
 }

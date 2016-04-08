@@ -53,6 +53,10 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
             if (enemy)
             enemy.GetHit(damage);
 
+            FragilePanelInstance panel = t_RaycastHit.transform.GetComponent<FragilePanelInstance>();
+            if (panel)
+                panel.GetHitByBullet(t_RaycastHit.point);
+
             ParticleInstanceManager.SpawnSystem(m_BulletImpactParticleName, t_RaycastHit.point, Quaternion.LookRotation(t_RaycastHit.normal));
             AudioManager.SpawnAudioInstance(m_BulletImpactSound, t_RaycastHit.point);
         }
