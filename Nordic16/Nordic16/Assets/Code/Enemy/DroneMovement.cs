@@ -39,8 +39,6 @@ public class DroneMovement : MonoBehaviour {
         {
             t_Velocity += t_Velocity.normalized * -m_DragForce * Time.deltaTime;
         }
-        m_Rigidbody.velocity = t_Velocity;
-        Debug.Log(t_Dir);
-        
+        m_Rigidbody.velocity = t_Velocity;       
 	}
 }
