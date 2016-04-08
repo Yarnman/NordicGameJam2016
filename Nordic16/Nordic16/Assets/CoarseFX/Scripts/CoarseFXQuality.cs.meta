@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: feccd48186ae4914cb668ecf44a88db8
+timeCreated: 1451942328
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ditherTexture: {fileID: 2800000, guid: 5a1aa70c8086001499b0f30546a6b587, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

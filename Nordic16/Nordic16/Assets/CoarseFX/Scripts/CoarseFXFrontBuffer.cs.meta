@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f741b05dd5ce8f345a7aa8439e4b03d7
+timeCreated: 1460124160
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - customUpsampler: {instanceID: 0}
+  - shaderClear: {fileID: 4800000, guid: f55aff3a6d2f832469591c5a7d76adcb, type: 3}
+  - shaderComposite: {fileID: 4800000, guid: 2f68c6d1066a5294f8b8b66335ad9515, type: 3}
+  - shaderUpsample: {fileID: 4800000, guid: 9e472e34e56d6dd458123b74a4d9860a, type: 3}
+  - shaderCubemap: {fileID: 4800000, guid: 8c148c8a437ec754c9b31bcc7cc581a4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
