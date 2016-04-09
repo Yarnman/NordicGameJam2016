@@ -17,6 +17,7 @@ public class EndGameCINEMATICS : MonoBehaviour {
     [SerializeField] AnimationCurve m_MotionCurve;
     [SerializeField] AnimationCurve m_FlyIntoSunCurve1;
     [SerializeField] AnimationCurve m_FlyIntoSunCurve2;
+    [SerializeField] string m_StartVO;
     float m_StartTime;
 
     BackgroundMusic m_Music;
@@ -37,6 +38,8 @@ public class EndGameCINEMATICS : MonoBehaviour {
         m_PlayerCamera = FindObjectOfType<PlayerCamera>();
         m_Sun = FindObjectOfType<Sun>();
         m_FlyIntoSun = FindObjectOfType<FlyIntoSun>();
+        AudioManager.SpawnAudioInstance(m_StartVO, transform.position);
+
     }
 	
 	void Update () 
