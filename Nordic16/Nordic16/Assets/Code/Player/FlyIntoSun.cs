@@ -19,10 +19,5 @@ public class FlyIntoSun : MonoBehaviour {
 
         float t_Shake = a_Intensity2* m_MaxShake;
         CameraShake.Shake(CameraShake.Reason.Direct, t_Shake);
-
-        if (a_Intensity1 == 0.0f)
-        {
-            Debug.Log("Wow");
-        }
     }
 }

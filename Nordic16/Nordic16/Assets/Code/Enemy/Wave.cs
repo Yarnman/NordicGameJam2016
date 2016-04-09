@@ -78,7 +78,6 @@ public class Wave : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        if (m_SpawnSpots == null)
         m_SpawnSpots = GetComponentsInChildren<SpawnSpot>();
     }
 }

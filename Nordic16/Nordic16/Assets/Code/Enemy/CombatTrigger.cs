@@ -7,6 +7,7 @@ public class CombatTrigger : MonoBehaviour {
 
     public void PlayerEnters()
     {
+        if (m_HasBeenUsed) return;
         m_HasBeenUsed = true;
         m_CombatEncounter.StartEncounter();
     }
@@ -25,6 +26,7 @@ public class CombatTrigger : MonoBehaviour {
             Gizmos.color = Color.yellow;
             if (m_CombatEncounter.GetWave())
             {
+                if (m_CombatEncounter.GetWave().m_SpawnSpots == null) return;
                 for (int i = 0; i < m_CombatEncounter.GetWave().m_SpawnSpots.Length; i ++)
                 {
                     Gizmos.DrawLine(transform.position, m_CombatEncounter.GetWave().m_SpawnSpots[i].transform.position);

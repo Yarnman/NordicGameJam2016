@@ -6,6 +6,8 @@ public class DoorTrigger : MonoBehaviour {
     [SerializeField] Door m_Door;
     public void PlayerEnters()
     {
+        if (m_HasBeenUsed) return;
+        m_HasBeenUsed = true;
         m_Door.StartOpening();
     }
 
