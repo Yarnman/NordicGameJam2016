@@ -10,6 +10,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Camera))]
 public class CoarseFXFrontBuffer : MonoBehaviour
 {
+    public static Color healthColor = new Color(1f, 0.5f, 0.25f, 0.75f);
+    public static float health = 1f;
     class PostEffect
     {
         Behaviour behaviour;
@@ -362,8 +364,13 @@ public class CoarseFXFrontBuffer : MonoBehaviour
             matUpsample.EnableKeyword("_MAGNIFY_ON");
         src.filterMode = FilterMode.Bilinear;
         GL.sRGBWrite = true;
+
         if (res.cubemap)
+        {
+            matCubemap.SetColor("_HealthColor", healthColor);
+            matCubemap.SetFloat("_Health", health);
             Graphics.Blit(src, dst, matCubemap);
+        }
         else
             Graphics.Blit(src, dst, matUpsample);
     }

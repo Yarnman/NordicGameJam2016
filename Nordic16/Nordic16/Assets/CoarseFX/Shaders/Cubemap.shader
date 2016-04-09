@@ -17,6 +17,8 @@ Pass {
 	#include "CoarseFX.cginc"
 
 	float4 _Scale;
+	float _Health;
+	fixed4 _HealthColor;
 
 	samplerCUBE _MainTex;
 	
@@ -31,7 +33,8 @@ Pass {
 		v2f OUT;
 
 		OUT.pos = mul(UNITY_MATRIX_MVP, pos);
-		OUT.uv = (uv * float2(6.28318530718, 3.14159265359) - float2(3.14159265359, 1.57079632679));
+		OUT.uv = uv * float2(6.28318530718, 3.14159265359) - float2(3.14159265359, 1.57079632679);
+		//OUT.uv *= 420.0 / 360.0;
 		OUT.uv.y = OUT.uv.y * _ScreenParams.y / _ScreenParams.x * 2.0 + 1.57079632679;
 
 		return OUT;
@@ -42,7 +45,10 @@ Pass {
 		if (2.61799387799 < IN.uv.y || IN.uv.y < 0.52359877559)
 			return 0;
 		float4 sc; sincos(IN.uv.xy, sc.xz, sc.yw);
-		return texCUBE(_MainTex, float3(sc.x * sc.z, sc.w, sc.y * sc.z));
+		fixed4 color = texCUBE(_MainTex, float3(sc.x * sc.z, sc.w, sc.y * sc.z));
+		if (IN.uv.y < 0.6)
+			color.rgb = lerp(color, _HealthColor.rgb * (IN.uv.x / 6.28 + 0.5 < _Health), _HealthColor.a);
+		return color;
 	}
 	ENDCG
 }//Pass
