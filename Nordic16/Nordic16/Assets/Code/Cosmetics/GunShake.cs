@@ -18,7 +18,7 @@ public class GunShake : MonoBehaviour {
     {
         if (m_Gun.m_IsFiringBackwards)
         {
-            transform.parent.localRotation = Quaternion.Euler(0, 180.0f, 0);
+            transform.parent.localRotation = Quaternion.Euler(180.0f, 0, 0);
         }
         else
         {

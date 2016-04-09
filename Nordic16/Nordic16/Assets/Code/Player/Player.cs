@@ -8,6 +8,9 @@ public class Player : MonoBehaviour {
     [SerializeField] string m_DeathSound;
     [SerializeField] MonoBehaviour[] m_PlayerScripts;
     [SerializeField] PlayerGetHitSphere m_PlayerGetHitSphere;
+    [SerializeField] float m_DeathWaitTime;
+
+    float m_DeathTime;
     bool m_IsDead;
     float m_Health;
 	void Start () 
@@ -17,7 +20,10 @@ public class Player : MonoBehaviour {
 	
 	void Update () 
 	{
-	
+	    if (m_IsDead && Time.time - m_DeathTime >= m_DeathWaitTime && Input.anyKeyDown)
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
 	}
 
     public bool IsAlive()
@@ -55,6 +61,7 @@ public class Player : MonoBehaviour {
         AudioManager.SpawnAudioInstance(m_DeathSound, transform.position);
         m_IsDead = true;
         m_Health = 0;
+        m_DeathTime = Time.time;
     }
 
     void OnTriggerEnter(Collider a_Other)

@@ -17,7 +17,7 @@ public class PlayerGetHitSphere : MonoBehaviour {
         if (m_IsDead)
         {
             Color t = m_Renderer.material.GetColor("_TintColor");
-            t.a = m_Curve.Evaluate(0);
+            t.a = 1.0f;
             m_Renderer.material.SetColor("_TintColor", t);
         }
         else

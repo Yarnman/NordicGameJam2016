@@ -11,7 +11,8 @@ public class CameraShake : MonoBehaviour {
         GetHit,
         PlayerDead,
         Shooting, 
-        Puke
+        Puke,
+        Direct
     }
     [SerializeField] float m_NormalMaxTime = 0;
     [SerializeField] float m_ShootMaxTime = 0;
@@ -59,7 +60,7 @@ public class CameraShake : MonoBehaviour {
         return m_IntensityCurve.Evaluate(t_RelativeTime) * m_Distance;
     }
     //Static method prevents every entity from searching for the camerashake object
-    public static void Shake(Reason a_Reason)
+    public static void Shake(Reason a_Reason, float a_Intensity = 0.0f)
     {
         if (g_CameraShake == null)
         {
@@ -97,6 +98,9 @@ public class CameraShake : MonoBehaviour {
                 break;
             case Reason.Puke:
                 t_ProposedDistance = g_CameraShake.m_PukeDistance;
+                break;
+            case Reason.Direct:
+                t_ProposedDistance = a_Intensity;
                 break;
         }
         

@@ -12,6 +12,7 @@ public class Puke : MonoBehaviour {
     [SerializeField] string m_WarmupSound;
     [SerializeField] string m_PukeSound;
     [SerializeField] string m_SquishSound;
+    [SerializeField] string m_ToxicWarning;
     float m_StartTime;
 
     bool m_Puking;
@@ -64,6 +65,7 @@ public class Puke : MonoBehaviour {
             {
                 m_Puking = false;
                 m_Fading = false;
+                AudioManager.SpawnAudioInstance(m_ToxicWarning, transform.position);
             }
         }
     }
