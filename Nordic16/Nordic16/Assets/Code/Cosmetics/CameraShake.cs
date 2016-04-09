@@ -10,13 +10,15 @@ public class CameraShake : MonoBehaviour {
         Explosion,
         GetHit,
         PlayerDead,
-        Shooting
+        Shooting, 
+        Puke
     }
     [SerializeField] float m_NormalMaxTime = 0;
     [SerializeField] float m_ShootMaxTime = 0;
     [SerializeField] float m_ExplosionDistance = 0;
     [SerializeField] float m_PlayerHitDistance = 0;
     [SerializeField] float m_PlayerDeadDistance = 0;
+    [SerializeField] float m_PukeDistance = 0;
     [SerializeField] float m_ShootDistance;
     [SerializeField] AnimationCurve m_IntensityCurve = null;
 
@@ -92,6 +94,9 @@ public class CameraShake : MonoBehaviour {
                     t_ProposedDistance = g_CameraShake.m_ShootDistance;
                     g_CameraShake.m_OneGunIsShooting = true;
                 }
+                break;
+            case Reason.Puke:
+                t_ProposedDistance = g_CameraShake.m_PukeDistance;
                 break;
         }
         

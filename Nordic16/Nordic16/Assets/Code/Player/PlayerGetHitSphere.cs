@@ -9,7 +9,7 @@ public class PlayerGetHitSphere : MonoBehaviour {
     bool m_IsDead;
 	void Start () 
 	{
-	
+        m_StartTime = -m_Time * 3.0f;
 	}
 	
 	void Update () 

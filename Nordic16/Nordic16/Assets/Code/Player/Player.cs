@@ -2,16 +2,17 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    [SerializeField] float m_Health;
+    [SerializeField] float m_StartHealth;
 
     [SerializeField] string m_GetHitSound;
     [SerializeField] string m_DeathSound;
     [SerializeField] MonoBehaviour[] m_PlayerScripts;
     [SerializeField] PlayerGetHitSphere m_PlayerGetHitSphere;
     bool m_IsDead;
+    float m_Health;
 	void Start () 
 	{
-	
+        m_Health = m_StartHealth;
 	}
 	
 	void Update () 
@@ -36,6 +37,11 @@ public class Player : MonoBehaviour {
         {
             Die();
         }
+    }
+
+    public float GetHealthFactor()
+    {
+        return Mathf.Clamp(m_Health / m_StartHealth, 0.0f, 1.0f);
     }
 
     void Die()
