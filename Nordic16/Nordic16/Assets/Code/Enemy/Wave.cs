@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Wave : MonoBehaviour {
-    SpawnSpot[] m_SpawnSpots;
+    [HideInInspector] public SpawnSpot[] m_SpawnSpots;
     List<Enemy> m_SpawnedEnemies = new List<Enemy>();
     public bool m_Done;
     public bool m_IsSpawning;
@@ -76,4 +76,9 @@ public class Wave : MonoBehaviour {
         m_LastSpawnTime = Time.time;
     }
 
+    void OnDrawGizmos()
+    {
+        if (m_SpawnSpots == null)
+        m_SpawnSpots = GetComponentsInChildren<SpawnSpot>();
+    }
 }

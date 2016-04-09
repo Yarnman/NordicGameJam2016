@@ -70,5 +70,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             t_Trigger.PlayerEnters();
         }
+        DoorTrigger t_DTrigger = a_Other.gameObject.GetComponent<DoorTrigger>();
+        if (t_DTrigger != null)
+        {
+            t_DTrigger.PlayerEnters();
+        }
     }
 }

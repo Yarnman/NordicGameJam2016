@@ -15,5 +15,21 @@ public class CombatTrigger : MonoBehaviour {
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, transform.localScale);
+
+        if (m_CombatEncounter)
+        {
+            if (m_CombatEncounter.GetDoor())
+            {
+                Gizmos.DrawLine(transform.position, m_CombatEncounter.GetDoor().transform.position);
+            }
+            Gizmos.color = Color.yellow;
+            if (m_CombatEncounter.GetWave())
+            {
+                for (int i = 0; i < m_CombatEncounter.GetWave().m_SpawnSpots.Length; i ++)
+                {
+                    Gizmos.DrawLine(transform.position, m_CombatEncounter.GetWave().m_SpawnSpots[i].transform.position);
+                }
+            }
+        }
     }
 }

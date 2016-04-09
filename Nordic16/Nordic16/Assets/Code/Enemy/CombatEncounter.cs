@@ -35,4 +35,13 @@ public class CombatEncounter : MonoBehaviour {
         Debug.Log("Starting encounter " + transform.name);
         m_Wave.StartSpawning();
     }
+
+    public Door GetDoor()
+    {
+        return m_Door;
+    }
+    public Wave GetWave()
+    {
+        return m_Wave;
+    }
 }
