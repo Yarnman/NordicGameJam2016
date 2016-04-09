@@ -72,6 +72,7 @@ public class Door : MonoBehaviour {
 
         upperdoor.transform.localPosition = Vector3.zero;// transform.up * m_HalfDoorLength * 0.5f;
         lowerdoor.transform.localPosition = Vector3.zero;//-transform.up * m_HalfDoorLength * 0.5f;
+        AudioManager.SpawnAudioInstance("DoorOpen", transform.position);
     }
     public void StartClosing()
     {
@@ -81,6 +82,7 @@ public class Door : MonoBehaviour {
 
         upperdoor.transform.localPosition = Vector3.up * m_HalfDoorLength * 1.0f;
         lowerdoor.transform.localPosition = -Vector3.up * m_HalfDoorLength * 1.0f;
+        AudioManager.SpawnAudioInstance("DoorClose", transform.position);
     }
     public void FinishClosing()
     {

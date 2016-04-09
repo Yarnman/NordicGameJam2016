@@ -5,10 +5,16 @@ using System.Collections.Generic;
 public class FragilePanelInstance : MonoBehaviour {
     [SerializeField] DestructiblePanel m_DestructiblePanel;
     List<GameObject> m_Patches = new List<GameObject>();
+    public int m_PatchCount;
     public void GetHitByBullet(Vector3 a_Point)
     {
         AddPatch(a_Point);
         m_DestructiblePanel.GetHitByBullet();
+    }
+
+    void Update()
+    {
+        m_PatchCount = m_Patches.Count;
     }
 
     void OnCollisionEnter(Collision a_Other)
@@ -26,6 +32,7 @@ public class FragilePanelInstance : MonoBehaviour {
     {
         GameObject t_Object = PatchInstanceManager.SpawnPatch("Patch", a_Point, -transform.forward).gameObject;
         m_Patches.Add(t_Object);
+        AudioManager.SpawnAudioInstance("GlassImpact", a_Point);
     }
 
     public GameObject GetClosestPatch(Vector3 a_Point)

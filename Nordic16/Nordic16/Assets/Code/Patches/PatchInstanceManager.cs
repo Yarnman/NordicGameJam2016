@@ -15,6 +15,8 @@ public class PatchInstanceManager : InstanceManager<PatchInstance>
         }
         t_Instance.transform.position = a_Position;
         t_Instance.transform.rotation = Quaternion.LookRotation(a_Direction);
+        t_Instance.gameObject.SetActive(true);
+        t_Instance.StartPatch();
         return t_Instance;
     }
 }

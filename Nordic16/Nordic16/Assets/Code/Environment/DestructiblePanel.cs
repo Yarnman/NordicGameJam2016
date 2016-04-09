@@ -98,6 +98,8 @@ public class DestructiblePanel : MonoBehaviour {
         m_LastTime = Time.time;
         m_State = State.Broken;
         m_PanelInstance.ResetPatches();
+        AudioManager.SpawnAudioInstance("GlassBreak", transform.position);
+        AudioManager.SpawnAudioInstance("Vacuum", transform.position);
     }
 
     void StartRepair()
@@ -115,7 +117,7 @@ public class DestructiblePanel : MonoBehaviour {
     {
         if (m_ShutterDoor)
         {
-            m_ShutterDoor.StartOpening();
+            m_ShutterDoor.FinishOpening();
         }
         m_BrokenPanel.SetActive(false);
         m_CompletePanel.SetActive(true);

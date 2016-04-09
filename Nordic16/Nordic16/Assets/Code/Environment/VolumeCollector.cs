@@ -27,6 +27,10 @@ public class VolumeCollector : MonoBehaviour {
 
     void OnTriggerEnter(Collider a_Collider)
     {
+        if (a_Collider.transform.GetComponent<ProjectileInstance>() != null)
+        {
+            return;
+        }
         m_CollectedList.Add(a_Collider.attachedRigidbody);
     }
     void OnTriggerExit(Collider a_Collider)
