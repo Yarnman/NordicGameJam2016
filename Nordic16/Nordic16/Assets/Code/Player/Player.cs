@@ -26,10 +26,11 @@ public class Player : MonoBehaviour {
 
     public void GetHit(float a_Damage)
     {
-        if (m_IsDead) return;
+        
         m_PlayerGetHitSphere.Hit();
         CameraShake.Shake(CameraShake.Reason.GetHit);
         AudioManager.SpawnAudioInstance(m_GetHitSound, transform.position);
+        if (m_IsDead) return;
         m_Health -= a_Damage;
         if (m_Health <= 0)
         {
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour {
     void Die()
     {
         if (m_IsDead) return;
+        m_PlayerGetHitSphere.Die();
         for (int i = 0; i < m_PlayerScripts.Length; i++)
         {
             m_PlayerScripts[i].enabled = false;
