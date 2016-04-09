@@ -49,4 +49,13 @@ public class PlayerMovement : MonoBehaviour {
             m_Movement -= t_Dot * hit.normal;
         }
     }
+
+    void OnTriggerEnter(Collider a_Other)
+    {
+        CombatTrigger t_Trigger = a_Other.gameObject.GetComponent<CombatTrigger>();
+        if (t_Trigger != null)
+        {
+            t_Trigger.PlayerEnters();
+        }
+    }
 }
