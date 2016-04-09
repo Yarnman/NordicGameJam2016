@@ -221,6 +221,8 @@ public class CoarseFXQuality : MonoBehaviour
 
     void UpdatePerCameraProperties(Camera cam)
     {
+        if (!ditherTex)
+            return;
         if (!resolution.progressive && cam.cameraType == CameraType.Game && cam.name != "Preview Camera")
         {
             Matrix4x4 proj = cam.projectionMatrix;

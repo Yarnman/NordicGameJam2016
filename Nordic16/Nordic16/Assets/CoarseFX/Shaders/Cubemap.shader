@@ -31,18 +31,18 @@ Pass {
 		v2f OUT;
 
 		OUT.pos = mul(UNITY_MATRIX_MVP, pos);
-		OUT.uv = (uv - 0.5) * float2(6.28318530718, -1.41421356237);
-		OUT.uv.y *= _ScreenParams.y / _ScreenParams.x * 4.0;
+		OUT.uv = uv * float2(6.28318530718, 3.14159265359) - float2(3.14159265359, 1.57079632679);
+		OUT.uv.y = OUT.uv.y * _ScreenParams.y / _ScreenParams.x * 2.0 + 1.57079632679;
 
 		return OUT;
 	}
 	
 	fixed4 frag(v2f IN) : SV_TARGET
 	{
-		if (abs(IN.uv.y) > 1.0)
+		if (2.61799387799 < IN.uv.y || IN.uv.y < 0.52359877559)
 			return 0;
-		float3 coord; sincos(IN.uv.x, coord.x, coord.z); coord.y = IN.uv.y;
-		return texCUBE(_MainTex, coord);
+		float4 sc; sincos(IN.uv.xy, sc.xz, sc.yw);
+		return texCUBE(_MainTex, float3(sc.x * sc.z, sc.w, sc.y * sc.z));
 	}
 	ENDCG
 }//Pass
