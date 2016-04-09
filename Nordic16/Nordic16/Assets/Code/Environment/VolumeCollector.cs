@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class VolumeCollector : MonoBehaviour {
     List<Rigidbody> m_CollectedList = new List<Rigidbody>();
     [SerializeField] bool m_KillEnemyOnLeave;
+    public bool m_KillPlayerOnEnter;
 	void Start () 
 	{
 	

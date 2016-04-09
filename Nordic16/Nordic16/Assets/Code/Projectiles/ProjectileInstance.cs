@@ -5,7 +5,8 @@ public class ProjectileInstance : MonoBehaviour {
     [SerializeField] float m_Speed;
     [SerializeField] Rigidbody m_Rigidbody;
     [SerializeField] float m_Damage;
-
+    [SerializeField] string m_ImpactParticle;
+    [SerializeField] string m_ImpactSound;
     float m_StartTime;
 	public void StartProjectile()
     {
@@ -29,7 +30,8 @@ public class ProjectileInstance : MonoBehaviour {
         {
             t_Player.GetHit(m_Damage);
         }
-
+        AudioManager.SpawnAudioInstance(m_ImpactSound, transform.position);
+        ParticleInstanceManager.SpawnSystem(m_ImpactParticle, transform.position, Quaternion.LookRotation(a_Other.contacts[0].normal));
         this.gameObject.SetActive(false);
     }
 }

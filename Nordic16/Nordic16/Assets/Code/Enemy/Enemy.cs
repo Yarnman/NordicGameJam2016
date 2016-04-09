@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] string m_GetHitSound;
     [SerializeField] string m_ExplosionSound;
     [SerializeField] string m_ExplosionParticle;
-
+    [SerializeField] string m_SpawnSound;
+    [SerializeField] string m_SpawnParticle;
     float m_Health;
 	void Start () 
 	{
@@ -43,5 +44,8 @@ public class Enemy : MonoBehaviour {
     public void Spawn()
     {
         m_Health = m_StartHealth;
+
+        AudioManager.SpawnAudioInstance(m_SpawnSound, transform.position);
+        ParticleInstanceManager.SpawnSystem(m_SpawnParticle, transform.position);
     }
 }

@@ -5,6 +5,7 @@ public class EnemyGun : MonoBehaviour {
     [SerializeField] float m_WaitTime;
     [SerializeField] string m_ProjectileName;
     [SerializeField] string m_FireParticleName;
+    [SerializeField] string m_FireParticleSound;
     [SerializeField] ParticleSystem m_ChargeParticles;
     Player m_Player;
     float m_LastFireTime;
@@ -38,7 +39,8 @@ public class EnemyGun : MonoBehaviour {
         {
             return;
         }
-        ParticleInstanceManager.SpawnSystem(m_FireParticleName, transform.position, Quaternion.LookRotation(transform.forward));
+        AudioManager.SpawnAudioInstance(m_FireParticleSound, transform.position);
+        //ParticleInstanceManager.SpawnSystem(m_FireParticleName, transform.position, Quaternion.LookRotation(transform.forward));
         ProjectileInstanceManager.SpawnProjectile(m_ProjectileName, transform.position, (m_Player.transform.position - transform.position).normalized);
     }
 }
