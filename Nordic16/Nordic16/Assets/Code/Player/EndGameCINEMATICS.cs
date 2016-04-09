@@ -26,6 +26,7 @@ public class EndGameCINEMATICS : MonoBehaviour {
     PlayerCamera m_PlayerCamera;
     Sun m_Sun;
     FlyIntoSun m_FlyIntoSun;
+    FinalDoor m_FinalDoor;
 
     Vector3 m_StartPosition;
     Quaternion m_StartRotation;
@@ -38,6 +39,7 @@ public class EndGameCINEMATICS : MonoBehaviour {
         m_PlayerCamera = FindObjectOfType<PlayerCamera>();
         m_Sun = FindObjectOfType<Sun>();
         m_FlyIntoSun = FindObjectOfType<FlyIntoSun>();
+        m_FinalDoor = FindObjectOfType<FinalDoor>();
         AudioManager.SpawnAudioInstance(m_StartVO, transform.position);
 
     }
@@ -58,6 +60,7 @@ public class EndGameCINEMATICS : MonoBehaviour {
             case State.Cut1:
                 if (Time.time - m_StartTime > m_Cutscene1Time)
                 {
+                    if (m_FinalDoor != null) m_FinalDoor.StartOpening();
                     TriggerCutscene2();
                 }
                 break;
