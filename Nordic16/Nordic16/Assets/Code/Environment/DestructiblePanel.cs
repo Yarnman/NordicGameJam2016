@@ -11,6 +11,7 @@ public class DestructiblePanel : MonoBehaviour {
     [SerializeField] GameObject m_CompletePanel;
     [SerializeField] GameObject m_BrokenPanel;
     [SerializeField] GameObject m_ShutterCollider;
+    [SerializeField] Door m_ShutterDoor;
     [SerializeField] int m_BulletHitLimit;
     [SerializeField] float m_BrokenTime;
     [SerializeField] float m_RepairTime;
@@ -25,6 +26,10 @@ public class DestructiblePanel : MonoBehaviour {
 	void Start () 
 	{
         FinishRepair();
+        if (m_ShutterDoor)
+        {
+            m_ShutterDoor.FinishOpening();
+        }
 	}
 	
 	void FixedUpdate () 
@@ -97,6 +102,10 @@ public class DestructiblePanel : MonoBehaviour {
 
     void StartRepair()
     {
+        if (m_ShutterDoor)
+        {
+            m_ShutterDoor.StartClosing();
+        }
         m_ShutterCollider.SetActive(true);
         m_LastTime = Time.time;
         m_State = State.Repairing;
@@ -104,6 +113,10 @@ public class DestructiblePanel : MonoBehaviour {
 
     void FinishRepair()
     {
+        if (m_ShutterDoor)
+        {
+            m_ShutterDoor.StartOpening();
+        }
         m_BrokenPanel.SetActive(false);
         m_CompletePanel.SetActive(true);
         m_BulletHits = 0;
