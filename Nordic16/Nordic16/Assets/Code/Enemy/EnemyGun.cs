@@ -9,6 +9,7 @@ public class EnemyGun : MonoBehaviour {
     void Start () 
 	{
         m_Player = FindObjectOfType<Player>();
+        m_LastFireTime = Time.time - Random.Range(0.0f, m_WaitTime);
     }
 	
 	void Update () 
