@@ -60,6 +60,20 @@ ModelImporter:
     100104: Box050
     100106: Box051
     100108: Box052
+    100110: Collision_0
+    100112: Collision_1
+    100114: Collision_2
+    100116: Collision_3
+    100118: Collision_4
+    100120: Collision_5
+    100122: Collision_6
+    100124: Greeble_0
+    100126: Greeble_1
+    100128: Greeble_2
+    100130: Greeble_3
+    100132: Greeble_4
+    100134: Greeble_5
+    100136: Greeble_6
     400000: //RootNode
     400002: Level_Collision
     400004: Level_Greeble
@@ -115,6 +129,20 @@ ModelImporter:
     400104: Box050
     400106: Box051
     400108: Box052
+    400110: Collision_0
+    400112: Collision_1
+    400114: Collision_2
+    400116: Collision_3
+    400118: Collision_4
+    400120: Collision_5
+    400122: Collision_6
+    400124: Greeble_0
+    400126: Greeble_1
+    400128: Greeble_2
+    400130: Greeble_3
+    400132: Greeble_4
+    400134: Greeble_5
+    400136: Greeble_6
     2300000: Level_Collision
     2300002: Level_Greeble
     2300004: Level_Greeble_MeshPart0
@@ -169,6 +197,20 @@ ModelImporter:
     2300102: Box050
     2300104: Box051
     2300106: Box052
+    2300108: Collision_0
+    2300110: Collision_1
+    2300112: Collision_2
+    2300114: Collision_3
+    2300116: Collision_4
+    2300118: Collision_5
+    2300120: Collision_6
+    2300122: Greeble_0
+    2300124: Greeble_1
+    2300126: Greeble_2
+    2300128: Greeble_3
+    2300130: Greeble_4
+    2300132: Greeble_5
+    2300134: Greeble_6
     3300000: Level_Collision
     3300002: Level_Greeble
     3300004: Level_Greeble_MeshPart0
@@ -223,6 +265,20 @@ ModelImporter:
     3300102: Box050
     3300104: Box051
     3300106: Box052
+    3300108: Collision_0
+    3300110: Collision_1
+    3300112: Collision_2
+    3300114: Collision_3
+    3300116: Collision_4
+    3300118: Collision_5
+    3300120: Collision_6
+    3300122: Greeble_0
+    3300124: Greeble_1
+    3300126: Greeble_2
+    3300128: Greeble_3
+    3300130: Greeble_4
+    3300132: Greeble_5
+    3300134: Greeble_6
     4300000: Level_Greeble
     4300002: Level_Collision
     4300004: Level_Greeble_MeshPart0
@@ -277,6 +333,20 @@ ModelImporter:
     4300102: Box050
     4300104: Box051
     4300106: Box052
+    4300108: Collision_0
+    4300110: Greeble_0
+    4300112: Greeble_1
+    4300114: Greeble_2
+    4300116: Greeble_3
+    4300118: Greeble_4
+    4300120: Greeble_5
+    4300122: Greeble_6
+    4300124: Collision_1
+    4300126: Collision_2
+    4300128: Collision_3
+    4300130: Collision_4
+    4300132: Collision_5
+    4300134: Collision_6
     9500000: //RootNode
   materials:
     importMaterials: 0
