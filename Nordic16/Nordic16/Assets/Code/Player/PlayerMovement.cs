@@ -12,11 +12,11 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float m_MaxAngularMovement;
     Vector3 m_AngularMovement;
     Vector3 m_Movement;
-	void Start () 
-	{
-	
-	}
-	void Update()
+    void Start()
+    {
+
+    }
+    void Update()
     {
         float t_X = Input.GetAxis("Horizontal");
         float t_Y = Input.GetAxis("Vertical");
@@ -74,6 +74,20 @@ public class PlayerMovement : MonoBehaviour {
         if (t_DTrigger != null)
         {
             t_DTrigger.PlayerEnters();
+        }
+        TriggerLights t_LTrigger = a_Other.gameObject.GetComponent<TriggerLights>();
+        if (t_LTrigger != null)
+        {
+            t_LTrigger.PlayerEnters();
+        }
+    }
+
+    void OnTriggerExit(Collider a_Other)
+    {
+        TriggerLights t_LTrigger = a_Other.gameObject.GetComponent<TriggerLights>();
+        if (t_LTrigger != null)
+        {
+            t_LTrigger.PlayerLeaves();
         }
     }
 }
