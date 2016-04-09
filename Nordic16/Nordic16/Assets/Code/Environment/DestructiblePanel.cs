@@ -10,6 +10,7 @@ public class DestructiblePanel : MonoBehaviour {
     }
     [SerializeField] GameObject m_CompletePanel;
     [SerializeField] GameObject m_BrokenPanel;
+    [SerializeField] GameObject m_ShutterCollider;
     [SerializeField] int m_BulletHitLimit;
     [SerializeField] float m_BrokenTime;
     [SerializeField] float m_RepairTime;
@@ -31,7 +32,10 @@ public class DestructiblePanel : MonoBehaviour {
 	    switch (m_State)
         {
             case State.Whole:
-                UpdateAttraction(m_HoleSuction);
+                if (m_BulletHits > 0)
+                { 
+                    UpdateAttraction(m_HoleSuction);
+                }
                 break;
             case State.Broken:
                 UpdateAttraction(m_BrokenSuction);
@@ -73,6 +77,10 @@ public class DestructiblePanel : MonoBehaviour {
                 }
 
                 Vector3 t_Direction = (transform.position - m_CollectingVolume.transform.position).normalized;
+                if (m_State == State.Whole)
+                {
+                    t_Direction = (m_PanelInstance.GetClosestPatch(t_Bodies[i].transform.position).transform.position - t_Bodies[i].transform.position).normalized;
+                }
                 t_Bodies[i].AddForce(t_Direction * a_Suction * Time.fixedDeltaTime, ForceMode.Acceleration);
             }
         }
@@ -89,8 +97,7 @@ public class DestructiblePanel : MonoBehaviour {
 
     void StartRepair()
     {
-        //Shutters.close
-
+        m_ShutterCollider.SetActive(true);
         m_LastTime = Time.time;
         m_State = State.Repairing;
     }
@@ -100,7 +107,7 @@ public class DestructiblePanel : MonoBehaviour {
         m_BrokenPanel.SetActive(false);
         m_CompletePanel.SetActive(true);
         m_BulletHits = 0;
-        //Shutters.open
+        m_ShutterCollider.SetActive(false);
         m_State = State.Whole;
     }
 
