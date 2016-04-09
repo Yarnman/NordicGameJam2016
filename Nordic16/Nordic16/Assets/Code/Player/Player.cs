@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
     [SerializeField] string m_GetHitSound;
     [SerializeField] string m_DeathSound;
     [SerializeField] MonoBehaviour[] m_PlayerScripts;
-
+    [SerializeField] PlayerGetHitSphere m_PlayerGetHitSphere;
     bool m_IsDead;
 	void Start () 
 	{
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     public void GetHit(float a_Damage)
     {
         if (m_IsDead) return;
+        m_PlayerGetHitSphere.Hit();
         CameraShake.Shake(CameraShake.Reason.GetHit);
         AudioManager.SpawnAudioInstance(m_GetHitSound, transform.position);
         m_Health -= a_Damage;
