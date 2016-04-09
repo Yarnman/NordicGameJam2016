@@ -9,18 +9,81 @@ ModelImporter:
     100002: Shutter 1
     100004: //RootNode
     100006: Shutter001
+    100008: Door
+    100010: Door 1
+    100012: Shute_00
+    100014: Shute_01
+    100016: Shute_02
+    100018: Shute_03
+    100020: Shute_04
+    100022: Shute_05
+    100024: Shute_06
+    100026: Shute_07
+    100028: Shute_08
+    100030: Shute_09
+    100032: Shute_10
+    100034: Shute_11
+    100036: Shute_Frame
     400000: Shutter
     400002: Shutter 1
     400004: //RootNode
     400006: Shutter001
+    400008: Door
+    400010: Door 1
+    400012: Shute_00
+    400014: Shute_01
+    400016: Shute_02
+    400018: Shute_03
+    400020: Shute_04
+    400022: Shute_05
+    400024: Shute_06
+    400026: Shute_07
+    400028: Shute_08
+    400030: Shute_09
+    400032: Shute_10
+    400034: Shute_11
+    400036: Shute_Frame
     2300000: Shutter
     2300002: Shutter 1
     2300004: Shutter001
+    2300006: Door
+    2300008: Door 1
+    2300010: Shute_00
+    2300012: Shute_01
+    2300014: Shute_02
+    2300016: Shute_03
+    2300018: Shute_04
+    2300020: Shute_05
+    2300022: Shute_06
+    2300024: Shute_07
+    2300026: Shute_08
+    2300028: Shute_09
+    2300030: Shute_10
+    2300032: Shute_11
+    2300034: Shute_Frame
     3300000: Shutter
     3300002: Shutter 1
     3300004: Shutter001
+    3300006: Door
+    3300008: Door 1
+    3300010: Shute_00
+    3300012: Shute_01
+    3300014: Shute_02
+    3300016: Shute_03
+    3300018: Shute_04
+    3300020: Shute_05
+    3300022: Shute_06
+    3300024: Shute_07
+    3300026: Shute_08
+    3300028: Shute_09
+    3300030: Shute_10
+    3300032: Shute_11
+    3300034: Shute_Frame
     4300000: Shutter
     4300002: Shutter
+    4300004: Door
+    4300006: Shute_Frame
+    4300008: Shute_10
     9500000: //RootNode
   materials:
     importMaterials: 1
