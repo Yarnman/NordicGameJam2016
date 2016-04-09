@@ -67,7 +67,7 @@ public class DestructiblePanel : MonoBehaviour {
             if (t_Bodies[i] != null)
             { 
                 DroneMovement t_Enemy = t_Bodies[i].GetComponent<DroneMovement>();
-                if (t_Enemy)
+                if (t_Enemy && a_Suction == m_BrokenSuction)
                 {
                     t_Enemy.enabled = false;
                 }
