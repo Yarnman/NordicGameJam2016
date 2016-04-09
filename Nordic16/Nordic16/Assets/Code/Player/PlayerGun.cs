@@ -17,6 +17,9 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
     [SerializeField] LayerMask m_Layermask;
     [SerializeField] float m_knockback;
     [SerializeField] PlayerMovement m_PlayerMove;
+
+    [SerializeField] bool m_DoAngularKnockback;
+    [SerializeField] Vector3 m_AngularKnockback;
     float m_LastFireTime;
     public bool m_IsFiring;
     public bool m_DidJustFire;
@@ -70,6 +73,18 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
         }
         m_GunShake.UpdateForwards();
         m_PlayerMove.AddKnockback(-t_Direction * m_knockback);
+
+        if (m_DoAngularKnockback)
+        {
+            if (a_Forwards)
+            {
+                m_PlayerMove.AddAngularKnockback(m_AngularKnockback);
+            }
+            else
+            { 
+                m_PlayerMove.AddAngularKnockback(-m_AngularKnockback);
+            }
+        }
         RaycastHit t_RaycastHit;
         AudioManager.SpawnAudioInstance(m_FireSound, transform.position);
         if (Physics.Raycast(transform.position, t_Direction, out t_RaycastHit, float.MaxValue, m_Layermask))

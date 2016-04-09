@@ -7,6 +7,10 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float m_Acceleration;
     [SerializeField] float m_Drag;
     [SerializeField] CharacterController m_Char;
+
+    [SerializeField] float m_AngularDrag;
+    [SerializeField] float m_MaxAngularMovement;
+    Vector3 m_AngularMovement;
     Vector3 m_Movement;
 	void Start () 
 	{
@@ -34,11 +38,20 @@ public class PlayerMovement : MonoBehaviour {
         }
         m_Movement = Vector3.ClampMagnitude(m_Movement, m_TerminalSpeed);
         m_Char.Move(m_Movement * Time.deltaTime);
+
+        m_AngularMovement -= m_AngularDrag * Time.deltaTime * m_AngularMovement.normalized;
+        m_AngularMovement = Vector3.ClampMagnitude(m_AngularMovement, m_MaxAngularMovement);
+        transform.Rotate(m_AngularMovement * Time.deltaTime, Space.World);
     }
 
     public void AddKnockback(Vector3 a_Knockback)
     {
         m_Movement += a_Knockback;
+    }
+
+    public void AddAngularKnockback(Vector3 a_AngularKnockback)
+    {
+        m_AngularMovement += a_AngularKnockback;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
