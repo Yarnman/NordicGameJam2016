@@ -317,7 +317,7 @@ fixed4 _LightColor0;
 
 #if SHADOWS_SCREEN && !UNITY_NO_SCREENSPACE_SHADOWS
 	Texture2D _ShadowMapTexture;
-	#define COARSEFX_SHADOW(IN) _ShadowMapTexture.Load(uint3(IN._ShadowCoord, 0)).x
+	#define COARSEFX_SHADOW(IN) _ShadowMapTexture.Load(uint3(IN.pos.xy, 0)).x
 #elif SHADOWS_SCREEN
 	UNITY_DECLARE_SHADOWMAP(_ShadowMapTexture);
 	#ifdef SHADOWS_NATIVE

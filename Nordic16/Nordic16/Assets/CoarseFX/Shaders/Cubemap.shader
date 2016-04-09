@@ -47,7 +47,7 @@ Pass {
 		float4 sc; sincos(IN.uv.xy, sc.xz, sc.yw);
 		fixed4 color = texCUBE(_MainTex, float3(sc.x * sc.z, sc.w, sc.y * sc.z));
 		if (IN.uv.y < 0.6)
-			color.rgb = lerp(color, _HealthColor.rgb * (IN.uv.x / 6.28 + 0.5 < _Health), _HealthColor.a);
+			color.rgb = lerp(color, _HealthColor.rgb * (abs(IN.uv.x) / 3.14159265359 < _Health), _HealthColor.a);
 		return color;
 	}
 	ENDCG

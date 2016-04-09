@@ -93,18 +93,17 @@ Pass {
 	#pragma geometry geom
 	#pragma fragment frag
 
-	struct v2g
+		struct v2g
 	{
 		float4 pos 	: SV_POSITION;
 		float2 vPos	: TEXCOORD0;
-		float3 oPos	: TEXCOORD1; 
-		bool cull	: TEXCOORD2;
+		float3 oPos	: TEXCOORD1;
 	};
 
 	struct g2f
 	{
 		float4 pos	: SV_POSITION;
-		float alpha	: TEXCOORD0;
+		float alpha : TEXCOORD0;
 	};
 
 	v2g vert(float3 pos : POSITION)
@@ -112,47 +111,31 @@ Pass {
 		v2g OUT;
 
 		OUT.pos = mul(UNITY_MATRIX_MVP, pos);
-		float2 sc; sincos(_Time.x * 0.1, sc.x, sc.y);
-		pos.xy = mul(float2x2(-sc.y, sc.xxy), pos.xy);
 		OUT.oPos = pos;
 
-		float proj = dot(UNITY_MATRIX_MVP[3], pos);
-		OUT.vPos = mul(UNITY_MATRIX_MVP, pos).xy / proj;
-
-		OUT.cull = abs(OUT.vPos.x) > 1.0f || abs(OUT.vPos.y) > 1.0f || pos.y < 0.0f || proj < 0.0f;
+		OUT.vPos = mul(UNITY_MATRIX_MVP, pos).xy / dot(UNITY_MATRIX_MVP[3], pos);
 
 		return OUT;
 	}
 
-	[maxvertexcount(204)]
+	[maxvertexcount(16)]
 	void geom(triangle v2g IN[3], inout PointStream<g2f> stream, uint id : SV_PrimitiveID)
 	{
-		if (_WorldSpaceLightPos0.y > 0.0f)// || _ScreenParams.x == _ScreenParams.y)
-			return;
-		if (IN[0].cull && IN[1].cull && IN[2].cull)
-			return;
-
 		float a = distance(IN[0].oPos, IN[1].oPos);
 		float b = distance(IN[1].oPos, IN[2].oPos);
 		float c = distance(IN[2].oPos, IN[0].oPos);
 		float s = (a + b + c) * 0.5f;
-		uint count = min(204, sqrt(s * (s - a) * (s - b) * (s - c)) * 8192.0f);
+		uint count = min(16, sqrt(s * (s - a) * (s - b) * (s - c)) * 512);
 
-		float night = sqrt(-_WorldSpaceLightPos0.y);
-		uint id204 = id * 204;
+		uint id204 = id * 26;
 
 		g2f OUT;
 		for (uint i = 0; i < count; i++)
 		{
 			float4 rnd = _RandomLut.Load(uint3((i + id204) % 512, 0, 0));
-			float vertical = IN[0].oPos.y * rnd.x + IN[1].oPos.y * rnd.y + IN[2].oPos.y * rnd.z;
-			if (vertical < 0.0f)
-				continue;
-			float2 pos = IN[0].vPos * rnd.x + IN[1].vPos * rnd.y + IN[2].vPos * rnd.z;
-			OUT.pos = float4(pos, 1.0f, 1.0f);
-			OUT.pos = VertexQuantize(OUT.pos);
-			OUT.alpha = sqrt(vertical) * rnd.w * night;
-			stream.Append(OUT); 
+			OUT.pos = float4(IN[0].vPos * rnd.x + IN[1].vPos * rnd.y + IN[2].vPos * rnd.z, 1.0f, 1.0f);
+			OUT.alpha = rnd.w * (length(OUT.pos.xy) * 0.75 + 0.25);
+			stream.Append(OUT);
 		}
 	}
 

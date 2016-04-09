@@ -6,6 +6,7 @@ Properties {
 	//[AdvancedTab] _Advanced("Show Advanced", Float) = 1
 	_FogIntns("Fog Intensity", Range(0,1)) = 1
 	_AddBlend("Additive/Blended", Range(0,1)) = 1
+	coarseFX_SpecCube("Spec Cube", Cube) = "white" {}
 
 	[HideInInspector] _BumpMap_Strength("Sprite Texture Strength", Vector) = (1,0,0,0)
 	[HideInInspector] _BumpMap_Scroll("Sprite Texture Scroll", Vector) = (0,0,0,0)
@@ -35,7 +36,7 @@ Pass {
 	float4 _BumpMap_Strength;
 	float4 _BumpMap_Scroll;
 
-	uniform samplerCUBE coarseFX_SpecCube;
+	samplerCUBE coarseFX_SpecCube;
 	fixed _FogIntns;
 
 	struct vData
