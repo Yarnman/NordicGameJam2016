@@ -46,9 +46,7 @@ Pass {
 	struct v2f
 	{
 		float4 pos					: SV_POSITION;
-		noperspective float4 sun	: TEXCOORD0;
-		noperspective fixed3 atmos	: TEXCOORD1;
-		nointerpolation fixed3 color	: TEXCOORD2;
+		noperspective fixed3 atmos	: TEXCOORD0;
 	};
 
 	v2f vert (float4 pos : POSITION)
@@ -58,31 +56,14 @@ Pass {
 		OUT.pos = mul(UNITY_MATRIX_MVP, pos);
 		OUT.pos = VertexQuantize(OUT.pos);
 
-		float3 sunDir = _WorldSpaceLightPos0.xyz;
-		float2 rot = normalize(sunDir.xz);
-		float2x2 mat = float2x2(rot.y, -rot.x, rot);
-		OUT.sun.xz = mul(mat, pos.xz);
-		sunDir.xz = mul(mat, sunDir.xz);
-		sunDir.y *= abs(sunDir.y);
-		rot = normalize(sunDir.yz);
-		OUT.sun.yz = mul(float2x2(rot.y, -rot.x, rot), float2(pos.y, OUT.sun.z));
-		OUT.sun.w = saturate(pos.y * 8.0 + 0.5f);
-
 		OUT.atmos = lerp(pos.y > 0.0 ? _SkyColor.rgb : _GroundColor.rgb, _EquatorColor.rgb, pow(1.0 - abs(pos.y), 8.0));
-
-		OUT.color = lerp(Luminance(_LightColor0.rgb), _LightColor0.rgb, 8.0);
 
 		return OUT;
 	}
 
 	fixed4 frag(v2f IN) : SV_TARGET
 	{
-		fixed3 sun = IN.sun.z > 0.0 ? tex2D(_SunTex, TRANSFORM_TEX(IN.sun.xy, _SunTex)).a * IN.color : tex2D(_MoonTex, TRANSFORM_TEX(IN.sun.xy, _MoonTex)).a;
-		fixed3 outcol = sun * IN.sun.w + IN.atmos;
-		//if (_ScreenParams.x == _ScreenParams.y)
-			return fixed4(outcol, 1.0);
-		//else
-		//	return fixed4(OutputDither(outcol, IN.pos.xy), 1.0);
+		return fixed4(IN.atmos, 1.0);
 	}
 	ENDCG 
 }
