@@ -31,7 +31,7 @@ Pass {
 		v2f OUT;
 
 		OUT.pos = mul(UNITY_MATRIX_MVP, pos);
-		OUT.uv = uv * float2(6.28318530718, 3.14159265359) - float2(3.14159265359, 1.57079632679);
+		OUT.uv = (uv * float2(6.28318530718, 3.14159265359) - float2(3.14159265359, 1.57079632679));
 		OUT.uv.y = OUT.uv.y * _ScreenParams.y / _ScreenParams.x * 2.0 + 1.57079632679;
 
 		return OUT;
