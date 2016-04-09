@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
+    [SerializeField] GunShake m_GunShake;
     [SerializeField] Transform m_GunMuzzle;
     [SerializeField] string m_BulletImpactParticleName;
     [SerializeField] string m_MuzzleFlashParticleName;
@@ -9,6 +10,8 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
     [SerializeField] string m_BulletImpactSound;
     [SerializeField] string m_FireButton;
     [SerializeField] string m_FireAxis;
+    [SerializeField] string m_BackFireButton;
+    [SerializeField] string m_BackFireAxis;
     public float m_WaitTime;
     [SerializeField] float damage;
     [SerializeField] LayerMask m_Layermask;
@@ -17,6 +20,7 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
     float m_LastFireTime;
     public bool m_IsFiring;
     public bool m_DidJustFire;
+    public bool m_IsFiringBackwards;
 	void Start () 
 	{
 	
@@ -32,7 +36,18 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
             if (Time.time - m_LastFireTime >= m_WaitTime)
             {
                 m_DidJustFire = true;
-                Fire();
+                Fire(true);
+                m_LastFireTime = Time.time;
+            }
+            CameraShake.Shake(CameraShake.Reason.Shooting);
+        }
+        else if (Input.GetButton(m_BackFireButton) || Input.GetAxis(m_BackFireAxis) > 0)
+        {
+            m_IsFiring = true;
+            if (Time.time - m_LastFireTime >= m_WaitTime)
+            {
+                m_DidJustFire = true;
+                Fire(false);
                 m_LastFireTime = Time.time;
             }
             CameraShake.Shake(CameraShake.Reason.Shooting);
@@ -41,15 +56,23 @@ public class PlayerGun : MonoBehaviour {//GUUUUUUUUUUUUUUUUUUUUNS
         {
             m_IsFiring = false;
             m_LastFireTime = 0.0f;
+            m_IsFiringBackwards = false;
         }
 	}
 
-    void Fire()
+    void Fire(bool a_Forwards)
     {
-        m_PlayerMove.AddKnockback(-transform.forward * m_knockback);
+        m_IsFiringBackwards = !a_Forwards;
+        Vector3 t_Direction = transform.forward;
+        if (!a_Forwards)
+        {
+            t_Direction *= -1.0f;
+        }
+        m_GunShake.UpdateForwards();
+        m_PlayerMove.AddKnockback(-t_Direction * m_knockback);
         RaycastHit t_RaycastHit;
         AudioManager.SpawnAudioInstance(m_FireSound, transform.position);
-        if (Physics.Raycast(transform.position, transform.forward, out t_RaycastHit, float.MaxValue, m_Layermask))
+        if (Physics.Raycast(transform.position, t_Direction, out t_RaycastHit, float.MaxValue, m_Layermask))
         {
             Enemy enemy = t_RaycastHit.transform.GetComponent<Enemy>();
             if (enemy)

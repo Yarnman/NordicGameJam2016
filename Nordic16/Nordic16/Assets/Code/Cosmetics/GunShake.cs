@@ -14,8 +14,20 @@ public class GunShake : MonoBehaviour {
 	
 	}
 	
+    public void UpdateForwards()
+    {
+        if (m_Gun.m_IsFiringBackwards)
+        {
+            transform.parent.localRotation = Quaternion.Euler(0, 180.0f, 0);
+        }
+        else
+        {
+            transform.parent.localRotation = Quaternion.identity;
+        }
+    }
 	void Update () 
 	{
+        UpdateForwards();
 	    if (m_Gun.m_IsFiring)
         {
             if (m_Gun.m_DidJustFire)
