@@ -48,7 +48,7 @@ Pass {
 	CGPROGRAM
 	fixed3 frag(v2f IN) : SV_TARGET
 	{
-		fixed3 prev = rgb2yuv(tex2D(_MainTex, IN.uv + float2(int(IN.pos.y + _FrameOddEven) % 2 > 0.5 ? _MainTex_TexelSize.x : -_MainTex_TexelSize.x, 0.0)));
+		fixed3 prev = rgb2yuv(tex2D(_MainTex, IN.uv + float2(uint(IN.pos.y + _FrameOddEven) % 2 > 0.5 ? _MainTex_TexelSize.x : -_MainTex_TexelSize.x, 0.0)));
 		fixed3 curr = rgb2yuv(tex2D(_MainTex, IN.uv));
 		return yuv2rgb(lerp(curr, prev, float3(distance(curr.yz, prev.yz) * 2, abs(curr.x - prev.x).xx * 8)));
 	}
