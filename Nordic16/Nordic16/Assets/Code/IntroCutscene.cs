@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class IntroCutscene : MonoBehaviour {
-
+    [SerializeField] bool Skip;
     public GameObject previousSlide;
     public GameObject Slide1;
     public GameObject Slide2;
@@ -29,10 +29,19 @@ public class IntroCutscene : MonoBehaviour {
     public float timeStamp9;
 
     private AudioSource introClip;
-
+    float m_StartTime;
+    [SerializeField] float m_SlideEndTime;
+    [SerializeField] AnimationCurve m_SlideCurve;
     // Use this for initialization
     void Start ()
     {
+        m_StartTime = Time.time;
+        if (Skip)
+        { 
+            CoarseFXFrontBuffer.reveal = 1.0f;
+            return;
+        }
+        CoarseFXFrontBuffer.reveal = 0.0f;
         AudioSource introClip = GetComponent<AudioSource>();
         introClip.PlayDelayed(initialDelay);
         currentTime = 0;
@@ -41,7 +50,22 @@ public class IntroCutscene : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        currentTime = Time.time - initialDelay;
+        if (Skip)
+        {
+            return;
+        }
+        currentTime = Time.time - m_StartTime - initialDelay;
+
+        if (currentTime <= m_SlideEndTime)
+        {
+            float t_Factor = (Time.time - m_StartTime) / (m_SlideEndTime);
+            float t_CurveFactor = m_SlideCurve.Evaluate(t_Factor);
+            CoarseFXFrontBuffer.reveal = t_CurveFactor;
+            if (currentTime >= m_SlideEndTime)
+            {
+                CoarseFXFrontBuffer.reveal = 1.0f;
+            }
+        }
 
         if (currentTime >= 0 && currentSlide == 0)
         {
@@ -100,7 +124,7 @@ public class IntroCutscene : MonoBehaviour {
         else if (currentTime >= timeStamp9 && currentSlide == 9)
         {
             previousSlide.SetActive(false);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
