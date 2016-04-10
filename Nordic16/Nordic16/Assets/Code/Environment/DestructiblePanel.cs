@@ -108,6 +108,7 @@ public class DestructiblePanel : MonoBehaviour {
         {
             m_ShutterDoor.StartClosing();
         }
+        m_BrokenPanel.SetActive(false);
         m_ShutterCollider.SetActive(true);
         m_LastTime = Time.time;
         m_State = State.Repairing;
