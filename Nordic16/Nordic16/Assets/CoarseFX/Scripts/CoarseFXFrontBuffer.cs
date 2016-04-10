@@ -12,6 +12,7 @@ public class CoarseFXFrontBuffer : MonoBehaviour
 {
     public static Color healthColor = new Color(1f, 0.5f, 0.25f, 0.75f);
     public static float health = 1f;
+    public static float reveal = 1f;
     class PostEffect
     {
         Behaviour behaviour;
@@ -369,6 +370,7 @@ public class CoarseFXFrontBuffer : MonoBehaviour
         {
             matCubemap.SetColor("_HealthColor", healthColor);
             matCubemap.SetFloat("_Health", health);
+            matCubemap.SetFloat("_Reveal", reveal);
             Graphics.Blit(src, dst, matCubemap);
         }
         else

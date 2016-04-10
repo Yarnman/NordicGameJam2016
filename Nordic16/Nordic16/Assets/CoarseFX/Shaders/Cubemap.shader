@@ -18,6 +18,7 @@ Pass {
 
 	float4 _Scale;
 	float _Health;
+	float _Reveal;
 	fixed4 _HealthColor;
 
 	samplerCUBE _MainTex;
@@ -43,6 +44,8 @@ Pass {
 	fixed4 frag(v2f IN) : SV_TARGET
 	{
 		if (2.61799387799 < IN.uv.y || IN.uv.y < 0.52359877559)
+			return 0;
+		if (abs(IN.uv.x) > 3.14159265359 * _Reveal)
 			return 0;
 		float4 sc; sincos(IN.uv.xy, sc.xz, sc.yw);
 		fixed4 color = texCUBE(_MainTex, float3(sc.x * sc.z, sc.w, sc.y * sc.z));
