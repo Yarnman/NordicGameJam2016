@@ -74,6 +74,7 @@ ModelImporter:
     100132: Greeble_4
     100134: Greeble_5
     100136: Greeble_6
+    100138: Greeble_0A
     400000: //RootNode
     400002: Level_Collision
     400004: Level_Greeble
@@ -143,6 +144,7 @@ ModelImporter:
     400132: Greeble_4
     400134: Greeble_5
     400136: Greeble_6
+    400138: Greeble_0A
     2300000: Level_Collision
     2300002: Level_Greeble
     2300004: Level_Greeble_MeshPart0
@@ -211,6 +213,7 @@ ModelImporter:
     2300130: Greeble_4
     2300132: Greeble_5
     2300134: Greeble_6
+    2300136: Greeble_0A
     3300000: Level_Collision
     3300002: Level_Greeble
     3300004: Level_Greeble_MeshPart0
@@ -279,6 +282,7 @@ ModelImporter:
     3300130: Greeble_4
     3300132: Greeble_5
     3300134: Greeble_6
+    3300136: Greeble_0A
     4300000: Level_Greeble
     4300002: Level_Collision
     4300004: Level_Greeble_MeshPart0
@@ -347,6 +351,7 @@ ModelImporter:
     4300130: Collision_4
     4300132: Collision_5
     4300134: Collision_6
+    4300136: Greeble_0A
     9500000: //RootNode
   materials:
     importMaterials: 0
