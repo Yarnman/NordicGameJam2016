@@ -17,12 +17,8 @@ public class FinalDoor : MonoBehaviour {
         m_Children = FindObjectsOfType<FinalDoorPart>();
 	}
 	
-	void Update () 
-	{
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StartOpening();
-        }
+	void Update ()
+    { 
         if (m_IsOpening)
         { 
             if (Time.time - m_StartTime > m_Time)

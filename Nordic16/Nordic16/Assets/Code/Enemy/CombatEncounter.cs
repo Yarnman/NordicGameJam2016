@@ -4,6 +4,7 @@ using System.Collections;
 public class CombatEncounter : MonoBehaviour {
     [SerializeField] Wave m_Wave;
     [SerializeField] Door m_Door;
+    [SerializeField] bool m_TriggersEnding;
     bool m_IsDone;
 	void Start () 
 	{
@@ -16,6 +17,11 @@ public class CombatEncounter : MonoBehaviour {
         {
             if (!m_IsDone)
             { 
+                if (m_TriggersEnding)
+                {
+                    EndGameCINEMATICS t = FindObjectOfType<EndGameCINEMATICS>();
+                    t.TriggerCutscene3();
+                }
                 Debug.Log("Wave done");
                 m_IsDone = true;
                 if (m_Door != null)

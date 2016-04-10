@@ -31,9 +31,9 @@ public class DamageModelFlasher : MonoBehaviour {
                 Color t_Color = m_BaseColor;
                 t_Color.a = t_Value;
 
-                if (m_Renderer.materials.Length >= 2)
+               // if (m_Renderer.materials.Length >= 2)
                 { 
-                    m_Renderer.materials[1].SetColor("_Color", t_Color);
+                    m_Renderer.materials[0].SetColor("_Color", t_Color);
                 }
             }
         }
@@ -44,9 +44,9 @@ public class DamageModelFlasher : MonoBehaviour {
         Color t_Color = m_BaseColor;
         t_Color.a = 0;
 
-        if (m_Renderer.materials.Length >= 2)
+        //if (m_Renderer.materials.Length >= 2)
         {
-            m_Renderer.materials[1].SetColor("_Color", t_Color);
+            m_Renderer.materials[0].SetColor("_Color", t_Color);
         }
     }
 

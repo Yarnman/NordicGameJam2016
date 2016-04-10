@@ -36,7 +36,7 @@ public class Wave : MonoBehaviour {
                 t_CurrentActive++;
             }
         }
-        if (t_CurrentActive < m_TotalSpawns && m_SpawnsLeft > 0)
+        if (t_CurrentActive < m_MaxActive && m_SpawnsLeft > 0)
         {
             float t_Time = Time.time - m_LastSpawnTime;
             if (t_Time >= m_SpawnTime)

@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnTriggerEnter(Collider a_Other)
     {
+        Debug.Log(a_Other.name);
         CombatTrigger t_Trigger = a_Other.gameObject.GetComponent<CombatTrigger>();
         if (t_Trigger != null)
         {
@@ -80,10 +81,16 @@ public class PlayerMovement : MonoBehaviour {
         {
             t_LTrigger.PlayerEnters();
         }
+        EndTrigger t_ETrigger = a_Other.gameObject.GetComponent<EndTrigger>();
+        if (t_ETrigger != null)
+        {
+            t_ETrigger.PlayerEnters();
+        }
     }
 
     void OnTriggerExit(Collider a_Other)
     {
+        Debug.Log(a_Other.name);
         TriggerLights t_LTrigger = a_Other.gameObject.GetComponent<TriggerLights>();
         if (t_LTrigger != null)
         {

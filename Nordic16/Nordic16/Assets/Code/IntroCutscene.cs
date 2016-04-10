@@ -54,6 +54,8 @@ public class IntroCutscene : MonoBehaviour {
         {
             return;
         }
+        PlayerMovement t_Movement = FindObjectOfType<PlayerMovement>();
+        if (t_Movement) t_Movement.enabled = false;
         currentTime = Time.time - m_StartTime - initialDelay;
 
         if (currentTime <= m_SlideEndTime)
@@ -125,6 +127,7 @@ public class IntroCutscene : MonoBehaviour {
         {
             previousSlide.SetActive(false);
             gameObject.SetActive(false);
+            if (t_Movement) t_Movement.enabled = true;
         }
     }
 
