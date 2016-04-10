@@ -30,8 +30,8 @@ public class ProjectileInstance : MonoBehaviour {
         {
             t_Player.GetHit(m_Damage);
         }
-        AudioManager.SpawnAudioInstance(m_ImpactSound, transform.position);
-        ParticleInstanceManager.SpawnSystem(m_ImpactParticle, transform.position, Quaternion.LookRotation(a_Other.contacts[0].normal));
+        if (m_ImpactSound.Length != 0) AudioManager.SpawnAudioInstance(m_ImpactSound, transform.position);
+        if (m_ImpactParticle.Length != 0) ParticleInstanceManager.SpawnSystem(m_ImpactParticle, transform.position, Quaternion.LookRotation(a_Other.contacts[0].normal));
         this.gameObject.SetActive(false);
     }
 }

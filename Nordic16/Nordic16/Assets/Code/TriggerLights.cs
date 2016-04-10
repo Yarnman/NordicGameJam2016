@@ -12,13 +12,11 @@ public class TriggerLights : MonoBehaviour {
     public void PlayerEnters()
     {
         m_LightGroup.SetActive(true);
-        Debug.Log("hiya");
     }
 
     public void PlayerLeaves()
     {
         m_LightGroup.SetActive(false);
-        Debug.Log("bye");
     }
 
     void OnDrawGizmos()

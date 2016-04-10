@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] string m_ExplosionParticle;
     [SerializeField] string m_SpawnSound;
     [SerializeField] string m_SpawnParticle;
+    [SerializeField] DroneMovement m_DroneMovement;
     float m_Health;
 	void Start () 
 	{
@@ -46,6 +47,11 @@ public class Enemy : MonoBehaviour {
         m_Health = m_StartHealth;
 
         AudioManager.SpawnAudioInstance(m_SpawnSound, transform.position);
-        ParticleInstanceManager.SpawnSystem(m_SpawnParticle, transform.position);
+        if (m_SpawnParticle.Length != 0) ParticleInstanceManager.SpawnSystem(m_SpawnParticle, transform.position);
+
+        if (m_DroneMovement)
+        {
+            m_DroneMovement.enabled = true;
+        }
     }
 }
